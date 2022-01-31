@@ -9,25 +9,30 @@ export default function Home() {
       </Head>
 
       <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
+        <div>
         <h1 className="text-white text-6xl font-bold">
           Welcome 👋🏻{' '}
           <a className="text-green-400" href="https://nextjs.org">
             to my page!
           </a>
         </h1>
-
+        </div>
+        <div>
         <p className="mt-3 p-3 text-2xl text-white">
           My name is{' '}
           <code className="rounded-md bg-zinc-800 p-2 font-mono text-lg text-slate-400">
             Vlad
           </code>
         </p>
+        </div>
         <div>
-        <button className="bg-green-300 text-white rounded-full font-bold p-3">Wave at Me</button>
+        <div>
+          <button className="bg-green-400 text-white rounded-full font-bold mt-10 p-3">👋🏻 Wave at Me</button>
+        </div>
         </div>
       </main>
 
-      <footer className="text-gray-300 text-xs flex items-center justify-center w-full h-5 border-t">
+      <footer className="text-gray-300 text-xs flex items-center justify-center w-full h-5">
           <h1>
             © {new Date().getFullYear()} Created by{' '}
             <a
