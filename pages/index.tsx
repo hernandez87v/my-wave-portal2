@@ -67,6 +67,7 @@ export default function Home() {
         <div>
         <div>
           <button className="bg-slate-800 text-green-400 rounded-full font-bold mt-10 p-3 drop-shadow-md">👋🏻 Wave at Me</button>
+          <p className='pt-3 font-light text-xs text-gray-600' >Connect your Ethereum wallet to wave at me!</p>
         </div>
         </div>
       </main>
