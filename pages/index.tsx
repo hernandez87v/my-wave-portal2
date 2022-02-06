@@ -59,6 +59,16 @@ export default function Home() {
 
   return (
     <div className="bg-slate-800 flex min-h-screen flex-col items-center justify-center py-2">
+      <nav className='w-screen flex justify-end'>
+          {/*
+        * If there is no currentAccount render this button
+        */}
+        {!currentAccount && (
+          <div className='pr-10'>
+          <button onClick={connectWallet} className="bg-slate-800 text-green-400 rounded-full font-bold mt-5 p-4 drop-shadow-md">🔌 Connect Wallet</button>
+          </div>
+        )}
+        </nav>
       <Head>
         <title>Welcome to Web3</title>
         <link rel="icon" href="/favicon.ico" />
@@ -124,14 +134,6 @@ export default function Home() {
         <div>
           <button className="bg-slate-800 text-green-400 rounded-full font-bold mt-10 p-3 drop-shadow-md">👋🏻 Wave at Me</button>
           <p className='pt-3 font-light text-xs text-gray-600' >Connect your Ethereum wallet to wave at me!</p>
-        </div>
-        <div>
-          {/*
-        * If there is no currentAccount render this button
-        */}
-        {!currentAccount && (
-          <button onClick={connectWallet} className="bg-slate-800 text-green-400 rounded-full font-bold mt-10 p-3 drop-shadow-md">🔌 Connect Wallet</button>
-        )}
         </div>
         </div>
       </main>
