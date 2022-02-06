@@ -78,7 +78,7 @@ export default function Home() {
         <div>
         <h1 className="text-white text-6xl font-bold">
           Welcome 👋🏻{' '}
-          <a className="text-green-400" href="https://nextjs.org">
+          <a className="text-green-400">
             to my page!
           </a>
         </h1>
