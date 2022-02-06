@@ -1,13 +1,14 @@
 import Head from 'next/head'
 import { useEffect, useState } from 'react';
+declare var window: any
 
 export default function Home() {
   const [currentAccount, setCurrentAccount] = useState("");
-
+  
   const checkIfWalletIsConnected = async () => {
     try {
       const { ethereum } = window;
-
+      
       if (!ethereum) {
         console.log("Make sure you have metamask!");
         return;
