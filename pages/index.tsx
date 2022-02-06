@@ -1,10 +1,14 @@
 import Head from 'next/head'
 import { useEffect, useState } from 'react';
-import { ethers } from 'ethers';
+import { ethers, getDefaultProvider } from 'ethers';
 declare var window: any
 
 export default function Home() {
   const [currentAccount, setCurrentAccount] = useState("");
+  /**
+   * Create a variable here that holds the contract address after you deploy!
+   */
+  const contractAddress = "0x9f001F1FD286A941B8cc73418EF48ce36EA4EAC8";
   
   const checkIfWalletIsConnected = async () => {
     try {
@@ -21,10 +25,14 @@ export default function Home() {
       * Check if we're authorized to access the user's wallet
       */
       const accounts = await ethereum.request({ method: "eth_accounts" });
+      //ENS names integration
+      // const provider = getDefaultProvider()
+      // var ensName = await provider.lookupAddress("0x16f8C5896ef9924971d40426145dfD2076E1d32C");
+      // const address = await provider.getAvatar("wslyvh.eth")
 
       if (accounts.length !== 0) {
         const account = accounts[0];
-        console.log("Found an authorized account:", account);
+        console.log("Found an authorized account:", accounts);
         setCurrentAccount(account)
       } else {
         console.log("No authorized account found")
@@ -150,7 +158,8 @@ export default function Home() {
         </div>
         <div>
         <div>
-          <button className="bg-slate-800 text-green-400 rounded-full font-bold mt-10 p-3 drop-shadow-md">👋🏻 Wave at Me</button>
+            <button className="bg-slate-800 text-green-400 rounded-full font-bold mt-10 p-3 drop-shadow-md"
+            onClick={wave}>👋🏻 Wave at Me</button>
           <p className='pt-3 font-light text-xs text-gray-600' >Connect your Ethereum wallet to wave at me!</p>
         </div>
         </div>
