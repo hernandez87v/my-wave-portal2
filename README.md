@@ -4,7 +4,7 @@
 
 ## Preview
 
-![Welcome Page -](https://github.com/hernandez87v/my-wave-portal2/blob/main/public/section2.png?raw=true "Welcome Page")
+![Welcome Page -](https://github.com/hernandez87v/my-wave-portal2/blob/main/public/welcomePage.png?raw=true 'Welcome Page')
 
 ## How to use
 

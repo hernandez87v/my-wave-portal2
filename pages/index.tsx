@@ -1,6 +1,7 @@
-import Head from 'next/head'
+import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import { ethers, getDefaultProvider } from 'ethers';
+import abi from './utils/WavePortal.json';
 declare var window: any
 
 export default function Home() {
@@ -9,16 +10,21 @@ export default function Home() {
    * Create a variable here that holds the contract address after you deploy!
    */
   const contractAddress = "0x9f001F1FD286A941B8cc73418EF48ce36EA4EAC8";
+   /**
+   * Create a variable here that references the abi content!
+   * from: artifacts/contracts/WavePortal.sol/WavePortal.json
+   */
+  const contractABI = abi.abi;
   
   const checkIfWalletIsConnected = async () => {
     try {
       const { ethereum } = window;
       
       if (!ethereum) {
-        console.log("Make sure you have metamask!");
+        console.log("Make sure you have 🦊 metamask!");
         return;
       } else {
-        console.log("We have the ethereum object", ethereum);
+        console.log("✅ We have the ethereum object", ethereum);
       }
 
       /*
@@ -27,15 +33,15 @@ export default function Home() {
       const accounts = await ethereum.request({ method: "eth_accounts" });
       //ENS names integration
       // const provider = getDefaultProvider()
-      // var ensName = await provider.lookupAddress("0x16f8C5896ef9924971d40426145dfD2076E1d32C");
+      // var ensName = await provider.lookupAddress(accounts);
       // const address = await provider.getAvatar("wslyvh.eth")
 
       if (accounts.length !== 0) {
         const account = accounts[0];
-        console.log("Found an authorized account:", accounts);
+        console.log("✅ Found an authorized account:", accounts);
         setCurrentAccount(account)
       } else {
-        console.log("No authorized account found")
+        console.log("❌ No authorized account found")
       }
     } catch (error) {
       console.log(error);
@@ -49,11 +55,11 @@ export default function Home() {
     try {
       const { ethereum } = window;
       if (!ethereum) {
-        alert("Get MetaMask!");
+        alert("Get 🦊 MetaMask!");
         return;
       }
       const accounts = await ethereum.request({ method: "eth_requestAccounts" });
-      console.log("Connected", accounts[0]);
+      console.log("Connected ✅", accounts[0]);
       setCurrentAccount(accounts[0]);
     } catch (error) {
       console.log(error)
@@ -70,9 +76,18 @@ export default function Home() {
         const wavePortalContract = new ethers.Contract(contractAddress, contractABI, signer);
 
         let count = await wavePortalContract.getTotalWaves();
-        console.log("Retrieved total wave count...", count.toNumber());
+        console.log("Retrieved total 🌊 wave count...", count.toNumber());
+
+        const waveTxn = await wavePortalContract.wave();
+        console.log("⛏️ Mining...", waveTxn.hash);
+
+        await waveTxn.wait();
+        console.log("⚒️ Mined -- ", waveTxn.hash);
+
+        count = await wavePortalContract.getTotalWaves();
+        console.log("Retrieved total 👋 wave count...", count.toNumber());
       } else {
-        console.log("Ethereum object doesn't exist!");
+        console.log("❌ Ethereum object doesn't exist!");
       }
     } catch (error) {
       console.log(error);
@@ -161,7 +176,10 @@ export default function Home() {
             <button className="bg-slate-800 text-green-400 rounded-full font-bold mt-10 p-3 drop-shadow-md"
             onClick={wave}>👋🏻 Wave at Me</button>
           <p className='pt-3 font-light text-xs text-gray-600' >Connect your Ethereum wallet to wave at me!</p>
-        </div>
+          </div>
+          <div>
+            <p>{}</p>
+          </div>
         </div>
       </main>
 
