@@ -34,7 +34,7 @@ export default function Home() {
       //ENS names integration
       // const provider = getDefaultProvider()
       // var ensName = await provider.lookupAddress(accounts);
-      // const address = await provider.getAvatar("wslyvh.eth")
+      // const address = await provider.getAvatar("vladh.eth")
 
       if (accounts.length !== 0) {
         const account = accounts[0];
