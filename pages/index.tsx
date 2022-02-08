@@ -9,8 +9,8 @@ export default function Home() {
   /**
    * Create a variable here that holds the contract address after you deploy!
    */
-  const contractAddress = "0x9f001F1FD286A941B8cc73418EF48ce36EA4EAC8";
-   /**
+  const contractAddress = "0x4650201bF010f487cEdD6Bc2b52d9D27d05A52D8";
+  /**
    * Create a variable here that references the abi content!
    * from: artifacts/contracts/WavePortal.sol/WavePortal.json
    */
