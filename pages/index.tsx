@@ -1,60 +1,13 @@
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
-import { ethers, getDefaultProvider } from 'ethers';
+import { ethers } from 'ethers';
 import abi from './utils/WavePortal.json';
 declare var window: any
 
 export default function Home() {
   const [currentAccount, setCurrentAccount] = useState("");
-  /**
-   * Create a variable here that holds the contract address after you deploy!
-   */
   const [allWaves, setAllWaves] = useState([]);
-  const contractAddress = "0x4650201bF010f487cEdD6Bc2b52d9D27d05A52D8";
-  /*
-   * Create a method that gets all waves from your contract
-   */
-  const getAllWaves = async () => {
-    try {
-      const { ethereum } = window;
-      if (ethereum) {
-        const provider = new ethers.providers.Web3Provider(ethereum);
-        const signer = provider.getSigner();
-        const wavePortalContract = new ethers.Contract(contractAddress, contractABI, signer);
-        /*
-         * Call the getAllWaves method from your Smart Contract
-         */
-        const waves = await wavePortalContract.getAllWaves();
-
-
-        /*
-         * We only need address, timestamp, and message in our UI so let's
-         * pick those out
-         */
-        let wavesCleaned = [];
-        waves.forEach(wave => {
-          wavesCleaned.push({
-            address: wave.waver,
-            timestamp: new Date(wave.timestamp * 1000),
-            message: wave.message
-          });
-        });
-
-        /*
-         * Store our data in React State
-         */
-        setAllWaves(wavesCleaned);
-      } else {
-        console.log("Ethereum object doesn't exist!")
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  /**
-   * Create a variable here that references the abi content!
-   * from: artifacts/contracts/WavePortal.sol/WavePortal.json
-   */
+  const contractAddress = "0xD95C875d3A78bEbDBE18f3Bb380F820b72b4e3a5";
   const contractABI = abi.abi;
   
   const checkIfWalletIsConnected = async () => {
@@ -76,6 +29,7 @@ export default function Home() {
       // const provider = getDefaultProvider()
       // var ensName = await provider.lookupAddress(accounts);
       // const address = await provider.getAvatar("vladh.eth")
+      // console.log('this is an ens name', ensName)
 
       if (accounts.length !== 0) {
         const account = accounts[0];
@@ -89,9 +43,6 @@ export default function Home() {
     }
   }
 
-    /**
-  * Implement your connectWallet method here
-  */
   const connectWallet = async () => {
     try {
       const { ethereum } = window;
@@ -129,6 +80,44 @@ export default function Home() {
         console.log("Retrieved total 👋 wave count...", count.toNumber());
       } else {
         console.log("❌ Ethereum object doesn't exist!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const getAllWaves = async () => {
+    try {
+      const { ethereum } = window;
+      if (ethereum) {
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        const signer = provider.getSigner();
+        const wavePortalContract = new ethers.Contract(contractAddress, contractABI, signer);
+        /*
+         * Call the getAllWaves method from your Smart Contract
+         */
+        const waves = await wavePortalContract.getAllWaves();
+
+
+        /*
+         * We only need address, timestamp, and message in our UI so let's
+         * pick those out
+         */
+        let wavesCleaned = [];
+        waves.forEach(wave => {
+          wavesCleaned.push({
+            address: wave.waver,
+            timestamp: new Date(wave.timestamp * 1000),
+            message: wave.message
+          });
+        });
+        console.log(waves)
+        /*
+         * Store our data in React State
+         */
+        setAllWaves(wavesCleaned);
+      } else {
+        console.log("Ethereum object doesn't exist!")
       }
     } catch (error) {
       console.log(error);
@@ -221,7 +210,8 @@ export default function Home() {
           <div>
             {allWaves.map((wave, index) => {
           return (
-            <div key={index} style={{ backgroundColor: "OldLace", marginTop: "16px", padding: "8px" }}>
+            <div key={index} 
+            className="bg-yellow-100 text-white p-2">
               <div>Address: {wave.address}</div>
               <div>Time: {wave.timestamp.toString()}</div>
               <div>Message: {wave.message}</div>
