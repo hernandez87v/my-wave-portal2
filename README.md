@@ -1,9 +1,9 @@
 # Learning to build a Web3 App with Solidity + Ethereum Smart Contracts
 
-- Solidity scroll 
-- NextJS next_track_button 
-- EtherrsJS gem 
-- Hardhat construction_worker
+- Solidity 📜 
+- NextJS ⏭️
+- EtherrsJS 💎 
+- Hardhat 👷
 
 ## Preview
 
