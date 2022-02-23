@@ -1,6 +1,9 @@
 # Learning to build a Web3 App with Solidity + Ethereum Smart Contracts
 
-[This project is from buildspace](https://zip.sc/qAsnw)
+- Solidity scroll 
+- NextJS next_track_button 
+- EtherrsJS gem 
+- Hardhat construction_worker
 
 ## Preview
 
